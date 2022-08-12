@@ -106,11 +106,11 @@
    
    首先在RT-Thread Studio中，搜索并加入SQLite软件包。
    
-   <img src="file:///C:/Users/chengjili/AppData/Roaming/marktext/images/2022-08-12-11-28-55-image.png" title="" alt="" width="922">
+   <img title="" src="file:///C:/Users/chengjili/AppData/Roaming/marktext/images/2022-08-12-11-28-55-image.png" alt="" width="922">
    
    具体配置如下：
    
-   ![](C:\Users\chengjili\AppData\Roaming\marktext\images\2022-08-12-11-30-54-image.png)
+   ![](img\2022-08-12-11-30-54-image.png)
    
    开启example，会有例程代码加入到工程。然后就可以仿照例程代码，实现自己具体的功能了。我这里新建了`sysdatabase`的源文件和头文件，盛放数据库相关的操作代码。实现如下的`create_sysdb_table()`函数。并在`user_gui_init()`的最开始进行调用。判断是否有数据库文件，如果有，是否有对应的数据库表。如果没有则创建数据库和建立需要的数据库表。
    
@@ -198,7 +198,7 @@
   
   用户名和登录密码的label控件，用图标美化了一下。后面的按钮以及其它的几个界面都还没来得及去美化，暂时先用文字验证功能。这里的小图标是用LVGL官网的取模工具，转换成了`user_img.c`和`password_img.c`然后加入到工程内部的方式实现的。每个文件254KB，不是很大。用这种方式实现的加载图片应该是速度最快的，只不过图片文件会最终编译到可执行文件内部，占用代码存储空间。所以背景图片就没用这种方式，因为800x480的图片，转换成'.c'文件后基本要二三十兆字节大小。实在是过于庞大。如果还想多加几张背景图做切换的话，直接就把SPI Flash撑爆了。这里的背景图片，是在LVGL中注册了一个软件JPEG解码器，用JPEG解码器对文件系统内的jpg文件进行加载和解码，然后显示。右下角的刷新率和CPU占用率的显示框，暂时没有关闭，在右下角也妨碍功能，还可以实时监视一下运行情况。而且还稍微修改了一下背景透明度，让其在白背景下显示的更清楚一些。
 
-![](G:\DCIM\DJI_0537.jpg)
+![](img/DJI_0537.jpg)
 
 - 点击用户名输入框后，会弹出键盘，以便输入用户名。下方还会弹出列表框，显示目前存在的用户名，以供直接选择。可以上下滑动查找，也可以输入关键字符，缩小查找范围。
 
@@ -257,7 +257,9 @@ https://www.bilibili.com/video/BV1Ka411N7A6?spm_id_from=333.999.0.0&vd_source=14
 1. 源码开源
    
    链接：[ComponentsLib: 基于新唐N9H30硬件平台，RTThread+LVGL软件平台的便携式器件库存管理系统。LVGL嵌入式GUI挑战赛作品。](https://gitee.com/chengjili/components-lib)
+
 2. LVGL学习笔记的分享
+   
    - [RT-Thread-N9H30开发板开箱测试RT-Thread问答社区 - RT-Thread](https://club.rt-thread.org/ask/article/9a1b494513c87d83.html)
    
    - [RT-Thread-N9H30开发板RTThread框架下的LVGL例程代码分析&mdash;&mdash;LVGL初始化RT-Thread问答社区 - RT-Thread](https://club.rt-thread.org/ask/article/bd14f02158909272.html)
@@ -271,7 +273,9 @@ https://www.bilibili.com/video/BV1Ka411N7A6?spm_id_from=333.999.0.0&vd_source=14
    - [RT-Thread-LVGL例程学习&mdash;&mdash;animRT-Thread问答社区 - RT-Thread](https://club.rt-thread.org/ask/article/7a35d68521bd667d.html)
      
      由于比赛的时间关系，后续的学习没有整理学习笔记。先忙于实现具体功能了。等后面功能完善后，可以再继续整理分享一下更深入的LVGL学习与使用心得。
+
 3. 官方问题的发现与解决
+   
    1. 新唐N9H30开发板适配的触摸屏驱动容易误触发的问题：
       
       [RT-Thread-N9H30 HMI开发板触摸屏误触发问题，及解决办法RT-Thread问答社区 - RT-Thread](https://club.rt-thread.org/ask/article/ccbb3e920a9ad23c.html)
@@ -279,6 +283,7 @@ https://www.bilibili.com/video/BV1Ka411N7A6?spm_id_from=333.999.0.0&vd_source=14
       也感谢官方对此方法的认可：
       
       ![](C:\Users\chengjili\AppData\Roaming\marktext\images\2022-08-12-18-02-06-image.png)
+   
    2. 官方anim的`lv_example_anim_3()`例程，存在BUG，一运行就崩溃。我在对应的日志中也提出了简易的解决办法。
 
 #### 特技
